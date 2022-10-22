@@ -1,7 +1,6 @@
 import Head from 'next/head';
 
-import NavigationFooter from './navigation-footer';
-import NavigationHeader from './navigation-header';
+import { Navbar } from '../components/index';
 
 const Layout = ({ title, children }) => {
 	return (
@@ -14,29 +13,23 @@ const Layout = ({ title, children }) => {
 					content="Blogu is the best GraphQL Blog Application on the web."
 				/>
 				<link rel="icon" type="image/png" href="/favicon.png" />
-				<title>
-					{title
-						? title + ' | Superior Software Solutions'
-						: 'Superior Software Solutions'}
-				</title>
+				<title>{title ? title + ' | Blogu' : 'Blogu'}</title>
 			</Head>
 
 			{/** body section start */}
-			<div className="flex min-h-screen flex-col justify-between">
+			<div>
 				{/** header section start start */}
 				<header>
-					<NavigationHeader />
+					<Navbar />
 				</header>
 				{/** header section start end */}
 
 				{/** main content section start */}
-				<main className="container m-auto mt-5 px-5">{children}</main>
+				<main className="container mx-auto mb-8 px-10">{children}</main>
 				{/** main content section end */}
 
 				{/** footer section start start */}
-				<footer>
-					<NavigationFooter />
-				</footer>
+				<footer></footer>
 				{/** footer section start start */}
 			</div>
 			{/** body section end */}

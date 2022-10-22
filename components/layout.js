@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import { Navbar } from '../components/index';
+import { Navbar } from './index';
 
 const Layout = ({ title, children }) => {
 	return (

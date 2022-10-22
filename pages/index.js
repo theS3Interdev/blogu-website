@@ -1,25 +1,25 @@
+import client from '../lib/apollo-client';
+import { getPosts } from '../graphql/queries/post-queries';
 import { Layout, PostCard, Categories, PostWidget } from '../components/index';
 
-const posts = [
-	{
-		id: 1,
-		title: 'React Testing',
-		excerpt: 'Facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
-	},
-	{
-		id: 2,
-		title: 'React with Tailwind',
-		excerpt: 'Facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
-	},
-];
+/** fetch data at build time */
+export const getStaticProps = async () => {
+	const { data } = await client.query({
+		query: getPosts,
+	});
 
-const Home = () => {
+	return {
+		props: { posts: data.posts },
+	};
+};
+
+const Home = ({ posts }) => {
 	return (
 		<Layout title="Home">
 			<div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
 				<div className="col-span-1 lg:col-span-8">
-					{posts.map((post) => (
-						<PostCard key={post.id} post={post} />
+					{posts.map((post, index) => (
+						<PostCard key={index} post={post} />
 					))}
 				</div>
 

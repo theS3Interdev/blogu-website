@@ -1,6 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	html,
+	body {
+		@apply m-0 box-border p-0;
+	}
+
+	html:before,
+	body:before {
+		@apply fixed top-0 left-0 z-[-1] h-screen w-full bg-base bg-cover bg-center bg-no-repeat content-[''];
+	}
+
+	a {
+		@apply text-inherit no-underline;
+	}
+}
+
+@layer components {
+	.text-shadow {
+		@apply drop-shadow-sm;
+	}
+
+	.adjacent-post .arrow-btn {
+		@apply w-[50px] transition duration-300 ease-in-out;
+	}
+
+	.adjacent-post:hover .arrow-btn {
+		@apply w-[60px];
+	}
+
+	.react-multi-carousel-list .arrow-btn {
+		@apply w-[50px] transition duration-300 ease-in-out;
+	}
+
+	.react-multi-carousel-list .arrow-btn:hover {
+		@apply w-[60px];
+	}
+}

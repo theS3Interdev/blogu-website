@@ -1,5 +1,4 @@
 import Head from 'next/head';
-
 import { Navbar } from './index';
 
 const Layout = ({ title, children }) => {

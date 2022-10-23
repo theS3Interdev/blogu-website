@@ -1,15 +1,12 @@
-import client from '../lib/apollo-client';
-import { getPosts } from '../graphql/queries/post-queries';
+import { getPosts } from '../services/index';
 import { Layout, PostCard, Categories, PostWidget } from '../components/index';
 
 /** fetch data at build time */
 export const getStaticProps = async () => {
-	const { data } = await client.query({
-		query: getPosts,
-	});
+	const posts = await getPosts();
 
 	return {
-		props: { posts: data.posts },
+		props: { posts },
 	};
 };
 

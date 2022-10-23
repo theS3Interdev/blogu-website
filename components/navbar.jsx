@@ -23,7 +23,7 @@ const Navbar = () => {
 				<div className="hidden md:float-left md:contents">
 					{categories.map((category) => (
 						<Link href={`/category/${category.slug}`} key={category.slug}>
-							<span className="mt-2 ml-4 cursor-pointer align-middle font-semibold text-white md:float-right">
+							<span className="mt-2 ml-4 cursor-pointer align-middle font-semibold text-white transition duration-500 hover:text-sky-500 md:float-right">
 								{category.name}
 							</span>
 						</Link>

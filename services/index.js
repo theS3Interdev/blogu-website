@@ -36,6 +36,41 @@ export const getPosts = async () => {
 	return result.posts;
 };
 
+/** getPostDetails query */
+export const getPostDetails = async (slug) => {
+	const query = gql`
+		query getPostDetails($slug: String!) {
+			post(where: { slug: $slug }) {
+				title
+				slug
+				excerpt
+				featuredImage {
+					url
+				}
+				author {
+					name
+					bio
+					photo {
+						url
+					}
+				}
+				content {
+					raw
+				}
+				categories {
+					name
+					slug
+				}
+				createdAt
+			}
+		}
+	`;
+
+	const result = await request(endpoint, query, { slug });
+
+	return result.post;
+};
+
 /** getRecentPosts query */
 export const getRecentPosts = async () => {
 	const query = gql`
@@ -57,7 +92,7 @@ export const getRecentPosts = async () => {
 };
 
 /** getSimilarPosts query */
-export const getSimilarPosts = async () => {
+export const getSimilarPosts = async (slug, categories) => {
 	const query = gql`
 		query getSimilarPosts($slug: String!, $categories: [String!]) {
 			posts(
@@ -74,7 +109,7 @@ export const getSimilarPosts = async () => {
 		}
 	`;
 
-	const result = await request(endpoint, query);
+	const result = await request(endpoint, query, { slug, categories });
 
 	return result.posts;
 };

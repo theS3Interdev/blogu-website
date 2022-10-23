@@ -3,16 +3,16 @@ import { useEffect, useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import { getRecentPosts, getSimilarPosts } from '../services/index';
 
-const PostWidget = ({ categories, slug }) => {
+const PostWidget = ({ slug, categories }) => {
 	const [relatedPosts, setRelatedPosts] = useState([]);
 
 	useEffect(() => {
 		if (slug) {
-			getSimilarPosts(categories, slug).then((result) => setRelatedPosts(result));
+			getSimilarPosts(slug, categories).then((result) => setRelatedPosts(result));
 		} else {
 			getRecentPosts().then((result) => setRelatedPosts(result));
 		}
-	}, [categories, slug]);
+	}, [slug, categories]);
 
 	return (
 		<div className="mb-8 rounded-lg bg-white p-8 pb-12 shadow-lg">

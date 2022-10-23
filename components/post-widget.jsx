@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import { getRecentPosts, getSimilarPosts } from '../services/index';
 
@@ -35,12 +35,10 @@ const PostWidget = ({ categories, slug }) => {
 						<p className="font-xs font-semibold text-gray-800">
 							{format(parseISO(post.createdAt), 'MMMM do, yyyy')}
 						</p>
-						<Link
-							key={index}
-							href={`/post/${post.slug}`}
-							className="text-md cursor-pointer transition duration-500 hover:text-sky-500"
-						>
-							{post.title}
+						<Link key={index} href={`/post/${post.slug}`}>
+							<span className="text-md cursor-pointer transition duration-500 hover:text-sky-500">
+								{post.title}
+							</span>
 						</Link>
 					</div>
 				</div>

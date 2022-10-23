@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import { getRecentPosts, getSimilarPosts } from '../services/index';
@@ -23,11 +24,13 @@ const PostWidget = ({ slug, categories }) => {
 			{relatedPosts.map((post, index) => (
 				<div key={index} className="mb-4 flex w-full items-center">
 					<div className="w-16 flex-none">
-						{/* eslint-disable-next-line @next/next/no-img-element */}
-						<img
+						<Image
 							src={post.featuredImage.url}
 							alt={post.title}
-							className="h-[60px] w-[60px] rounded-lg align-middle"
+							unoptimized
+							width="55px"
+							height="55px"
+							className="rounded-lg align-middle"
 						/>
 					</div>
 

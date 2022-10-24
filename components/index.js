@@ -5,6 +5,7 @@ export { default as Comments } from './comments';
 export { default as CommentsForm } from './comments-form';
 export { default as FeaturedPostCard } from './featured-post-card';
 export { default as Layout } from './layout';
+export { default as Loader } from './loader';
 export { default as Navbar } from './navbar';
 export { default as PostCard } from './post-card';
 export { default as PostDetail } from './post-detail';

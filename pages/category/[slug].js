@@ -1,5 +1,6 @@
+import { useRouter } from 'next/router';
 import { getCategories, getCategoryPosts } from '../../services';
-import { PostCard, Categories, Layout } from '../../components';
+import { Categories, Layout, Loader, PostCard } from '../../components';
 
 /** fetch data at build time */
 export const getStaticProps = async ({ params }) => {
@@ -26,6 +27,12 @@ export const getStaticPaths = async () => {
 };
 
 const CatgegoryPost = ({ posts }) => {
+	const router = useRouter();
+
+	if (router.isFallback) {
+		return <Loader />;
+	}
+
 	return (
 		<Layout title="Categories">
 			<div className="container mx-auto mb-8 px-10">

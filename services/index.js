@@ -150,6 +150,7 @@ export const getAdjacentPosts = async (createdAt, slug) => {
 	return { next: result.next[0], previous: result.previous[0] };
 };
 
+/** getFeaturedPosts query */
 export const getFeaturedPosts = async () => {
 	const query = gql`
     query getFeaturedPosts() {
@@ -171,6 +172,39 @@ export const getFeaturedPosts = async () => {
   `;
 
 	const result = await request(endpoint, query);
+
+	return result.posts;
+};
+
+/** getCategoryPosts query */
+export const getCategoryPosts = async (slug) => {
+	const query = gql`
+		query getCategoryPosts($slug: String!) {
+			posts(where: { categories_some: { slug: $slug } }) {
+				title
+				slug
+				excerpt
+				featuredImage {
+					url
+				}
+				author {
+					id
+					name
+					bio
+					photo {
+						url
+					}
+				}
+				categories {
+					name
+					slug
+				}
+				createdAt
+			}
+		}
+	`;
+
+	const result = await request(endpoint, query, { slug });
 
 	return result.posts;
 };

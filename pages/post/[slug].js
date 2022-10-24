@@ -27,8 +27,8 @@ export const getStaticPaths = async () => {
 	return {
 		paths: posts.map(({ slug }) => ({ params: { slug } })),
 
-		/** paths returned will be rendered to html at build time */
-		fallback: true,
+		/** server-render pages on-demand if the path doesn't exist. */
+		fallback: 'blocking',
 	};
 };
 

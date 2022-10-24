@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { format, parseISO } from 'date-fns';
 
 const PostCard = ({ post }) => {
@@ -19,11 +20,13 @@ const PostCard = ({ post }) => {
 
 			<div className="mb-8 block w-full items-center justify-center text-center lg:flex">
 				<div className="mb-4 mr-8 flex w-full items-center justify-center lg:mb-0 lg:w-auto">
-					{/* eslint-disable-next-line @next/next/no-img-element */}
-					<img
+					<Image
 						alt={post.author.name}
 						src={post.author.photo.url}
-						className="h-8 w-8 rounded-lg align-middle"
+						unoptimized
+						width="34px"
+						height="34px"
+						className="rounded-lg align-middle"
 					/>
 					<p className="ml-2 inline align-middle text-lg font-medium text-gray-800">
 						{post.author.name}

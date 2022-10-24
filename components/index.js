@@ -1,7 +1,9 @@
+export { default as AdjacentPostCard } from './adjacent-post-card';
 export { default as Author } from './author';
 export { default as Categories } from './categories';
 export { default as Comments } from './comments';
 export { default as CommentsForm } from './comments-form';
+export { default as FeaturedPostCard } from './featured-post-card';
 export { default as Layout } from './layout';
 export { default as Navbar } from './navbar';
 export { default as PostCard } from './post-card';

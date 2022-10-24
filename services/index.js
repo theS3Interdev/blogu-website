@@ -114,6 +114,101 @@ export const getSimilarPosts = async (slug, categories) => {
 	return result.posts;
 };
 
+/** getAdjacentPosts query */
+export const getAdjacentPosts = async (createdAt, slug) => {
+	const query = gql`
+		query getAdjacentPosts($createdAt: DateTime!, $slug: String!) {
+			next: posts(
+				first: 1
+				orderBy: createdAt_ASC
+				where: { slug_not: $slug, AND: { createdAt_gte: $createdAt } }
+			) {
+				title
+				slug
+				featuredImage {
+					url
+				}
+				createdAt
+			}
+			previous: posts(
+				first: 1
+				orderBy: createdAt_DESC
+				where: { slug_not: $slug, AND: { createdAt_lte: $createdAt } }
+			) {
+				title
+				slug
+				featuredImage {
+					url
+				}
+				createdAt
+			}
+		}
+	`;
+
+	const result = await request(endpoint, query, { createdAt, slug });
+
+	return { next: result.next[0], previous: result.previous[0] };
+};
+
+/** getFeaturedPosts query */
+export const getFeaturedPosts = async () => {
+	const query = gql`
+    query getFeaturedPosts() {
+      posts(where: {featuredPost: true}) {
+        title
+        slug
+        author {
+          name
+          photo {
+            url
+          }
+        }
+        featuredImage {
+          url
+        }
+        createdAt
+      }
+    }   
+  `;
+
+	const result = await request(endpoint, query);
+
+	return result.posts;
+};
+
+/** getCategoryPosts query */
+export const getCategoryPosts = async (slug) => {
+	const query = gql`
+		query getCategoryPosts($slug: String!) {
+			posts(where: { categories_some: { slug: $slug } }) {
+				title
+				slug
+				excerpt
+				featuredImage {
+					url
+				}
+				author {
+					id
+					name
+					bio
+					photo {
+						url
+					}
+				}
+				categories {
+					name
+					slug
+				}
+				createdAt
+			}
+		}
+	`;
+
+	const result = await request(endpoint, query, { slug });
+
+	return result.posts;
+};
+
 /** getCategories query */
 export const getCategories = async () => {
 	const query = gql`

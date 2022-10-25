@@ -55,7 +55,7 @@ const FeaturedPosts = () => {
 	);
 
 	const customRightArrow = (
-		<div className="arrow-btn absolute right-0 cursor-pointer rounded-full bg-sky-500 py-3 text-center">
+		<div className="arrow-btn right- absolute right-0 cursor-pointer rounded-full bg-sky-500 py-3 text-center">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				className="h-6 w-6 text-white"

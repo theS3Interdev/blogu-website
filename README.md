@@ -1,4 +1,4 @@
-# Blogu
+# Blogu Website
 
 ## Summary
 
